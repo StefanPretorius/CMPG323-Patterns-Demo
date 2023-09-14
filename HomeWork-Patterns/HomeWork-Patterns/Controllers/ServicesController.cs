@@ -14,18 +14,19 @@ namespace HomeWork_Patterns.Controllers
     public class ServicesController : Controller
     {
         private readonly CMPG_323_Patterns_HomeworkContext _context;
-
-        public ServicesController(CMPG_323_Patterns_HomeworkContext context)
+        private readonly IServiceRepository _serviceRepository;
+        public ServicesController( IServiceRepository serviceRepository)
         {
-            _context = context;
+            
+            _serviceRepository = serviceRepository;
+            this._serviceRepository = serviceRepository;
         }
 
         // GET: Services
         public async Task<IActionResult> Index()
         {
-            ServiceRepository serviceRepository = new ServiceRepository();
 
-            var results = serviceRepository.GetAll();
+            var results = _serviceRepository.GetAll();
 
             return View(results);
         }
